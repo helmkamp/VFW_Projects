@@ -1,9 +1,18 @@
 <!doctype html>
+<!--
+-Andrew Helmkamp 
+-Project 1
+-VFW ####
+-->
 <html>
 	<head>
 
 		<!--Character Set Meta -->
 		<meta charset="utf-8" />
+		<meta name="keywords" content="grocery, calculator, prices" />
+		<meta name="description" content="Calculate an estimated cost for your groceries" />
+		<meta name="author" content="Andrew Helmkamp" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<!--Page Title-->
 		<title>Add Item</title>
@@ -11,14 +20,14 @@
 	</head>
 	<body>
 		<div class="wrap">
-			<h1>Add an Item to Your List</h1>
+			<h1>Add Item to Your List</h1>
 			<form id="items" action="javascript:void;">
 				<label>Enter today's date</label><br /><input type="date" placeholder="MM/DD/YY" id="date" required/>
 				
 				<fieldset>
 					<legend>Tax Info</legend>
-					<label>Sales Tax</label>
-					<select name="salesTax" id="tax">
+					<label for="salesTax">Sales Tax</label>
+					<select name="salesTax" id="salesTax">
 						<option value="0">0</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -28,8 +37,8 @@
 						<option value="6">6</option>
 					</select>
 
-					<label>Food Tax</label>
-					<select name="foodTax" id="tax">
+					<label for="foodTax">Food Tax</label>
+					<select name="foodTax" id="foodTax">
 						<option value="0">0</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -42,22 +51,24 @@
 
 				<fieldset>
 					<legend>Item Info</legend>
-					<label>Item Name</label> <input type="text" name="itemName" placeholder="Apples" id="name"/>
-					<label>Price</label> <input type="number" name="itemPrice" placeholder="1.34" id="price" required />
+					<label for="name">Item Name</label> <input type="text" name="itemName" placeholder="Apples" id="name"/>
+					<label for="price">Price</label> <input type="number" name="itemPrice" placeholder="3.34" id="price" required />
 					<br /><br />
-					<label>Quantity:</label>
-					<input type="range" name="quantity" min="1" max="25" />
+					<label for="quantity">Quantity:</label>
+					<input type="range" name="quantity" min="1" max="25" id="quantity" />
 					<!-- <output for="quantity" onforminput="value=quantity.valueAsNumber;">1</output> -->
 					<br /><br />
 					<label>Food Item:</label> 
-					<label>Yes</label> <input type="radio" name="foodItem" value="yes" />
-					<label>No</label> <input type="radio" name="foodItem" value="no" />
-					
-
+					<label for="foodYes">Yes</label> <input type="radio" name="foodItem" id="foodYes" value="yes" />
+					<label for="foodNo">No</label> <input type="radio" name="foodItem" id="foodNo" value="no" />
+					<br /><br />
+					<label for="comments">Comments:</label><br /> <textarea rows="3" cols="30" placeholder="Apples 50% off this week." id="comments"></textarea>
 					<br /><br />
 					<input type="submit" value="Add Item" id="submit"/>
 				</fieldset>
 			</form>
+			<br />
+			<a href="#">Clear Stored Data</a> | <a href="#">Display Data</a>
 		</div>
 		
 
