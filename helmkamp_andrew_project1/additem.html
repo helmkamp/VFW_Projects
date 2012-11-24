@@ -14,8 +14,25 @@
 
 	</head>
 	<body>
-
-		<!--This is where my content will go-->
-
+		<div class="wrap">
+			<form action="#" method="post">
+				<fieldset>
+					<legend>New Item</legend>
+					<label for="start">Start Date</label>
+					<input type="date" placeholder="MM/DD/YY" id="start" /> 
+					<label for="end">Finish Date</label>
+					<input type="date" placeholder="MM/DD/YY" id="end" /> <br />
+					<label for="itemName">Item Name</label> <input type="text" name="itemName" placeholder="Homework" id="itemName" />
+					<label for="category">Catagory</label> 
+					<select name="category" id="category">
+						<option value="work">Work</option>
+						<option value="school" selected="selected">School</option>
+						<option value="Personal">Personal</option>
+					</select>
+				</fieldset>
+				<input type="button" value="Add Item" id="submit" />
+			</form>
+			<a href="#">Clear Stored Data</a> | <a href="#">Display Data</a>
+		</div>
 	</body>
 </html>
