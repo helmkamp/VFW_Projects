@@ -10,25 +10,39 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<!--Page Title-->
-		<title></title>
+		<title>Add Item</title>
 
 	</head>
 	<body>
 		<div class="wrap">
+			<h1>Add a New Item</h1>
 			<form action="#" method="post">
 				<fieldset>
-					<legend>New Item</legend>
+					<legend>Item Information</legend>
 					<label for="start">Start Date</label>
-					<input type="date" placeholder="MM/DD/YY" id="start" /> 
+					<input type="date" placeholder="MM/DD/YY" id="start" /> <br />
 					<label for="end">Finish Date</label>
 					<input type="date" placeholder="MM/DD/YY" id="end" /> <br />
-					<label for="itemName">Item Name</label> <input type="text" name="itemName" placeholder="Homework" id="itemName" />
+					<label for="itemName">Item Name</label> <input type="text" name="itemName" placeholder="Homework" id="itemName" /> <br />
 					<label for="category">Catagory</label> 
 					<select name="category" id="category">
 						<option value="work">Work</option>
 						<option value="school" selected="selected">School</option>
 						<option value="Personal">Personal</option>
-					</select>
+					</select> <br />
+					<label for="priority">Priority</label>
+					<input type="range" name="priority" min="1" max="3" value="1" id="priority" onchange="showValue(this.value)" />
+					<span id="priorityNum">1</span>
+					<script type="text/javascript">
+					//This will be moved to an external file at a later time
+					function showValue(newValue) { document.getElementById("priorityNum").innerHTML=newValue; }
+					</script>
+					<br />
+					<input type="checkbox" name="highlight" value="highlighted" id="highlight" />
+					<label for="highlight">Highlighted</label>
+					<br />
+					<label for="comments">Comments:</label><br /> <textarea rows="3" cols="30" placeholder="Add any additional information." id="comments"></textarea>
+					<input type="hidden" value="true" />
 				</fieldset>
 				<input type="button" value="Add Item" id="submit" />
 			</form>
