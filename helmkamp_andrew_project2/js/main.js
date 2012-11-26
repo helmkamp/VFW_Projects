@@ -7,6 +7,10 @@
 
 window.addEventListener("DOMContentLoaded", function() {
 
+	//"Global" Variables
+	var highlightedValue = "No";
+	var hideForm = false;
+
 	//getElementById Function
 	function $ (x) {
 		var theElement = document.getElementById(x);
@@ -40,45 +44,76 @@ window.addEventListener("DOMContentLoaded", function() {
 		alert("Item Saved");
 	};
 
-	function getData () {
-		//Write data from local storage to the browser
-		var makeDiv = document.createElement('div');
-		makeDiv.setAttribute("id", "items");
-		var makeList = document.createElement('ul');
-		makeDiv.appendChild(makeList);
-		document.body.appendChild(makeDiv);
-		for (var i = 0; i < localStorage.length; i++) {
-			var makeLi = document.createElement('li');
-			makeList.appendChild(makeLi);
-			var key = localStorage.key(i);
-			var value = localStorage.getItem(key);
-			//Convert the value back to an object
-			var obj = JSON.parse(value);
-			var makeSubList = document.createElement('ul');
-			makeLi.appendChild(makeSubList);
-			for(var n in obj){
-				var makeSubLi = document.createElement('li');
-				makeSubList.appendChild(makeSubLi);
-				var optSubText = obj[n][0]+" "+obj[n][1];
-				makeSubLi.innerHTML = optSubText;
-			};
+	function toggleForm () {
+		if (hideForm) {
+			$('todoForm').style.display = "none";
+			$('display').style.display = "none";
+			$('add').style.display = "inline";
+		} else{
+			$('todoForm').style.display = "block";
+			$('display').style.display = "inline";
+			$('add').style.display = "none";
+			$('items').style.display = "none";
 		};
 	};
 
+	function getData () {
+		if (localStorage.length >= 1) {
+			hideForm = true;
+			toggleForm();
+			//Write data from local storage to the browser
+			var makeDiv = document.createElement('div');
+			makeDiv.setAttribute("id", "items");
+			var makeList = document.createElement('ul');
+			makeDiv.appendChild(makeList);
+			document.body.appendChild(makeDiv);
+			$('items').style.display = "block";
+			for (var i = 0; i < localStorage.length; i++) {
+				var makeLi = document.createElement('li');
+				makeList.appendChild(makeLi);
+				var key = localStorage.key(i);
+				var value = localStorage.getItem(key);
+				//Convert the value back to an object
+				var obj = JSON.parse(value);
+				var makeSubList = document.createElement('ul');
+				makeLi.appendChild(makeSubList);
+				for(var n in obj){
+					var makeSubLi = document.createElement('li');
+					makeSubList.appendChild(makeSubLi);
+					var optSubText = obj[n][0]+" "+obj[n][1];
+					makeSubLi.innerHTML = optSubText;
+				};
+			};
+		} else{
+			alert("There is no data to display.");
+		};
+	};
+
+	function addItem () {
+		hideForm = false;
+		toggleForm();
+		window.location.reload();
+		return false;
+	}
+
 	function clearLocal () {
 		var del = confirm("Are you sure you want to delete all data?")
-		if (del) {
+		if ((del) && (localStorage.length >= 1)) {
 			localStorage.clear();
+			alert("All data has been cleared.");
+			window.location.reload();
+			return false;
+		} else {
+			alert("There is no data to clear.");
 		};
 	}
 
-	//"Global" Variables
-	var highlightedValue = "No";
-
-
+	
 	//Set Link and Submit Click Events
 	var displayLink = $('display');
 	displayLink.addEventListener("click", getData);
+	var addLink = $('add');
+	addLink.addEventListener("click", addItem);
 	var clearLink = $('clear');
 	clearLink.addEventListener("click", clearLocal);
 	var save = $('submit');

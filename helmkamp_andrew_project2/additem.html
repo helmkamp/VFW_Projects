@@ -15,8 +15,9 @@
 	</head>
 	<body>
 		<div class="wrap">
-			<h1>Add a New Item</h1>
-			<form action="#" method="post">
+			<h1>Add a New Item</h1> <br />
+			<a href="#" id="clear">Clear Stored Data</a> | <a href="#" id="display">Display Data</a><a href="#" id="add" style="display:none">Add New Item</a>
+			<form action="#" method="post" id="todoForm">
 				<fieldset>
 					<legend>Item Information</legend>
 					<label for="start">Start Date</label>
@@ -46,7 +47,6 @@
 				</fieldset>
 				<input type="button" value="Add Item" id="submit" />
 			</form>
-			<a href="#" id="clear">Clear Stored Data</a> | <a href="#" id="display">Display Data</a>
 		</div>
 		<script type="text/javascript" src="./js/main.js"></script>
 	</body>
