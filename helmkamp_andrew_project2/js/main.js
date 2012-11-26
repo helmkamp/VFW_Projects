@@ -65,6 +65,12 @@ window.addEventListener("DOMContentLoaded", function() {
 		};
 	};
 
+	function clearLocal () {
+		var del = confirm("Are you sure you want to delete all data?")
+		if (del) {
+			localStorage.clear();
+		};
+	}
 
 	//"Global" Variables
 	var highlightedValue = "No";
@@ -73,8 +79,8 @@ window.addEventListener("DOMContentLoaded", function() {
 	//Set Link and Submit Click Events
 	var displayLink = $('display');
 	displayLink.addEventListener("click", getData);
-	//var clearLink = $('clear');
-	//clearLink.addEventListener("click", clearLocal);
+	var clearLink = $('clear');
+	clearLink.addEventListener("click", clearLocal);
 	var save = $('submit');
 	save.addEventListener("click", storeData);
 
