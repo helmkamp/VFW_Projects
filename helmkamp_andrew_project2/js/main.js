@@ -62,7 +62,6 @@ window.addEventListener("DOMContentLoaded", function() {
 			hideForm = true;
 			toggleForm();
 			//Write data from local storage to the browser
-
 			var makeDiv = document.createElement('div');
 			makeDiv.setAttribute("id", "items");
 			var makeList = document.createElement('ul');
