@@ -8,15 +8,15 @@
 		<meta name="description" content="Manage your time better" />
 		<meta name="author" content="Andrew Helmkamp" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+		<link rel="stylesheet" type="text/css" href="./css/styles.css">
 		<!--Page Title-->
 		<title>Add Item</title>
 
 	</head>
 	<body>
 		<div class="wrap">
-			<h1>Add a New Item</h1> <br />
-			<a href="#" id="clear">Clear Stored Data</a> | <a href="#" id="display">Display Data</a><a href="#" id="add" style="display:none">Add New Item</a>
+			<h1>Add a New Item</h1>
+			<a href="#" id="clear">Clear Stored Data</a> <a href="#" id="display">Display Data</a><a href="#" id="add" style="display:none">Add New Item</a>
 			<form action="#" method="post" id="todoForm">
 				<fieldset>
 					<legend>Item Information</legend>
@@ -39,7 +39,7 @@
 					function showValue(newValue) { document.getElementById("priorityNum").innerHTML=newValue; }
 					</script>
 					<br />
-					<input type="checkbox" name="highlight" value="Highlighted" id="highlight" />
+					<input type="checkbox" name="highlight" value="Yes" id="highlight" />
 					<label for="highlight">Highlighted</label>
 					<br />
 					<label for="comments">Comments:</label><br /> <textarea rows="3" cols="30" placeholder="Add any additional information." id="comments"></textarea>
