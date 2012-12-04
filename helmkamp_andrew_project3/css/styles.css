@@ -14,9 +14,16 @@ h1 {
 	padding-right: .3em;
 }
 
-a:visited {
+.editLinks {
+	padding-top: .5em;
+	padding-right: 2em;
+	background-color: transparent;
+}
+
+a, :visited {
 	color: blue;
 	outline: 0;
+	text-decoration: none;
 }
 
 ul {

@@ -24,6 +24,33 @@ window.addEventListener("DOMContentLoaded", function() {
 			highlightedValue = "No";
 		};
 	}
+	
+	// Make the edit/delete links for each displayed item
+	function makeItemLinks(key, linkLi) {
+		//add Edit Single Item link
+		var editLink = document.createElement('a');
+		editLink.setAttribute("class", "editLinks");
+		editLink.href = "#";
+		editLink.key = key;
+		var editText = "Edit Item";
+		//editLink.addEventListener("click", editItem);
+		editLink.innerHTML = editText;
+		linkLi.appendChild(editLink);
+		
+		//Create line break
+		//var lineBreak = document.createElement('br');
+		//linkLi.appendChild(lineBreak);
+		
+		//add Delete Link
+		var deleteLink = document.createElement('a');
+		deleteLink.setAttribute("class", "editLinks");
+		deleteLink.href = "#";
+		deleteLink.key = key;
+		var deleteText = "Delete Item";
+		//deleteLink.addEventListener("click", deleteItem);
+		deleteLink.innerHTML = deleteText;
+		linkLi.appendChild(deleteLink);
+	}
 
 	function storeData() {
 		var id = Math.floor(Math.random()*1000000001);
@@ -70,6 +97,7 @@ window.addEventListener("DOMContentLoaded", function() {
 			$('items').style.display = "block";
 			for (var i = 0; i < localStorage.length; i++) {
 				var makeLi = document.createElement('li');
+				var linkLi = document.createElement('li');
 				makeList.appendChild(makeLi);
 				var key = localStorage.key(i);
 				var value = localStorage.getItem(key);
@@ -82,7 +110,9 @@ window.addEventListener("DOMContentLoaded", function() {
 					makeSubList.appendChild(makeSubLi);
 					var optSubText = obj[n][0]+" "+obj[n][1];
 					makeSubLi.innerHTML = optSubText;
+					makeSubList.appendChild(linkLi);
 				};
+				makeItemLinks(localStorage.key(i), linkLi); //Create our edit and delete links for each item
 			};
 		} else{
 			alert("There is no data to display.");
