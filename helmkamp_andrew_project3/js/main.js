@@ -33,7 +33,7 @@ window.addEventListener("DOMContentLoaded", function() {
 		editLink.href = "#";
 		editLink.key = key;
 		var editText = "Edit Item";
-		//editLink.addEventListener("click", editItem);
+		editLink.addEventListener("click", editItem);
 		editLink.innerHTML = editText;
 		linkLi.appendChild(editLink);
 		
@@ -50,6 +50,27 @@ window.addEventListener("DOMContentLoaded", function() {
 		//deleteLink.addEventListener("click", deleteItem);
 		deleteLink.innerHTML = deleteText;
 		linkLi.appendChild(deleteLink);
+	}
+	
+	function editItem () {
+		//Get data from our item from local storage
+		var value = localStorage.getItem(this.key);
+		var item = JSON.parse(value);
+		//show form
+		hideForm = false;
+		toggleForm();
+		
+		//populate with current values
+		$('start').value = item.startDate[1];
+		$('end').value = item.endDate[1];
+		$('itemName').value = item.itemName[1];
+		$('category').value = item.category[1];
+		$('priority').value = item.priority[1];
+		if(item.highlighted[1] === "Yes") {
+			$('highlight').setAttribute("checked", "checked");
+		}
+		$('comments').value = item.comments[1];
+		
 	}
 
 	function storeData() {
@@ -107,11 +128,23 @@ window.addEventListener("DOMContentLoaded", function() {
 				makeLi.appendChild(makeSubList);
 				for(var n in obj){
 					var makeSubLi = document.createElement('li');
+					if((obj.highlighted[1] === "Yes")) {
+						if(obj.priority[1] === "1") {
+							makeSubList.setAttribute("id", "highlightGreen");
+						} else if(obj.priority[1] === "2") {
+							makeSubList.setAttribute("id", "highlightYellow");
+						}else if(obj.priority[1] === "3") {
+							makeSubList.setAttribute("id", "highlightRed");
+						}
+					}
 					makeSubList.appendChild(makeSubLi);
 					var optSubText = obj[n][0]+" "+obj[n][1];
 					makeSubLi.innerHTML = optSubText;
 					makeSubList.appendChild(linkLi);
+					//console.log(obj[n][1]);
 				};
+				
+				
 				makeItemLinks(localStorage.key(i), linkLi); //Create our edit and delete links for each item
 			};
 		} else{

@@ -46,3 +46,16 @@ form {
 p {
 	text-align: center;
 }
+
+
+#highlightGreen {
+	background-color: green;
+}
+
+#highlightYellow {
+	background-color: yellow;
+}
+
+#highlightRed {
+	background-color: red;
+}
