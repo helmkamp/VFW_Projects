@@ -14,6 +14,10 @@ h1 {
 	padding-right: .3em;
 }
 
+#errors {
+		color: red;
+}
+
 .editLinks {
 	padding-top: .5em;
 	padding-right: 2em;

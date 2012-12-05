@@ -1,7 +1,7 @@
 /****************
 *Andrew Helmkamp
 *VFW 1212
-*Project 2
+*Project 3
 *Javascript file
 ****************/
 
@@ -23,54 +23,6 @@ window.addEventListener("DOMContentLoaded", function() {
 		} else{
 			highlightedValue = "No";
 		};
-	}
-	
-	// Make the edit/delete links for each displayed item
-	function makeItemLinks(key, linkLi) {
-		//add Edit Single Item link
-		var editLink = document.createElement('a');
-		editLink.setAttribute("class", "editLinks");
-		editLink.href = "#";
-		editLink.key = key;
-		var editText = "Edit Item";
-		editLink.addEventListener("click", editItem);
-		editLink.innerHTML = editText;
-		linkLi.appendChild(editLink);
-		
-		//Create line break
-		//var lineBreak = document.createElement('br');
-		//linkLi.appendChild(lineBreak);
-		
-		//add Delete Link
-		var deleteLink = document.createElement('a');
-		deleteLink.setAttribute("class", "editLinks");
-		deleteLink.href = "#";
-		deleteLink.key = key;
-		var deleteText = "Delete Item";
-		//deleteLink.addEventListener("click", deleteItem);
-		deleteLink.innerHTML = deleteText;
-		linkLi.appendChild(deleteLink);
-	}
-	
-	function editItem () {
-		//Get data from our item from local storage
-		var value = localStorage.getItem(this.key);
-		var item = JSON.parse(value);
-		//show form
-		hideForm = false;
-		toggleForm();
-		
-		//populate with current values
-		$('start').value = item.startDate[1];
-		$('end').value = item.endDate[1];
-		$('itemName').value = item.itemName[1];
-		$('category').value = item.category[1];
-		$('priority').value = item.priority[1];
-		if(item.highlighted[1] === "Yes") {
-			$('highlight').setAttribute("checked", "checked");
-		}
-		$('comments').value = item.comments[1];
-		
 	}
 
 	function storeData() {
@@ -158,6 +110,63 @@ window.addEventListener("DOMContentLoaded", function() {
 		window.location.reload();
 		return false;
 	}
+	
+	// Make the edit/delete links for each displayed item
+	function makeItemLinks(key, linkLi) {
+		//add Edit Single Item link
+		var editLink = document.createElement('a');
+		editLink.setAttribute("class", "editLinks");
+		editLink.href = "#";
+		editLink.key = key;
+		var editText = "Edit Item";
+		editLink.addEventListener("click", editItem);
+		editLink.innerHTML = editText;
+		linkLi.appendChild(editLink);
+		
+		//Create line break
+		//var lineBreak = document.createElement('br');
+		//linkLi.appendChild(lineBreak);
+		
+		//add Delete Link
+		var deleteLink = document.createElement('a');
+		deleteLink.setAttribute("class", "editLinks");
+		deleteLink.href = "#";
+		deleteLink.key = key;
+		var deleteText = "Delete Item";
+		//deleteLink.addEventListener("click", deleteItem);
+		deleteLink.innerHTML = deleteText;
+		linkLi.appendChild(deleteLink);
+	}
+	
+	function editItem () {
+		//Get data from our item from local storage
+		var value = localStorage.getItem(this.key);
+		var item = JSON.parse(value);
+		//show form
+		hideForm = false;
+		toggleForm();
+		
+		//populate with current values
+		$('start').value = item.startDate[1];
+		$('end').value = item.endDate[1];
+		$('itemName').value = item.itemName[1];
+		$('category').value = item.category[1];
+		$('priority').value = item.priority[1];
+		if(item.highlighted[1] === "Yes") {
+			$('highlight').setAttribute("checked", "checked");
+		}
+		$('comments').value = item.comments[1];
+		
+		//Remove the initial listener from the input 'save contact' button
+		save.removeEventListener("click", storeData);
+		//Change the Submit button value to Edit
+		$('submit').value = "Edit Item";
+		var editSubmit = $('submit');
+		//Save the key value in this function as a property of the editSubmit event
+		editSubmit.addEventListener("click", validate);
+		editSubmit.key = this.key;
+		
+	}
 
 	function clearLocal () {
 		var del = confirm("Are you sure you want to delete all data?")
@@ -170,6 +179,47 @@ window.addEventListener("DOMContentLoaded", function() {
 			alert("There is no data to clear.");
 		};
 	}
+	
+	function validate(e) {
+		//Define the elements we want to check
+		var getStartDate = $('start');
+		var getEndDate = $('end');
+		var getItemName = $('itemName');
+		
+		//Check for errors
+		var aMessages = [];
+		
+		if(getStartDate.value === "") {
+				var startDateError = "When do you plan on starting this task?";
+				getStartDate.style.border = "1px solid red";
+				aMessages.push(startDateError);
+		}
+		
+		if(getEndDate.value === "") {
+				var endDateError = "When do you plan on finishing this task?";
+				getEndDate.style.border = "1px solid red";
+				aMessages.push(endDateError);
+		}
+		
+		if(getItemName.value === "") {
+				var itemNameError = "What task are you trying to schedule?";
+				getItemName.style.border = "1px solid red";
+				aMessages.push(itemNameError);
+		}
+		
+		//If errors, display them
+		if(aMessages.length >= 1) {
+				var j = aMessages.length;
+				var errMsg = $('errors')
+				for(var i=0; i < j; i++) {
+						var txt = document.createElement('li');
+						txt.innerHTML = aMessages[i];
+						errMsg.appendChild(txt);
+				}
+		}
+		e.preventDefault();
+		return false;
+	}
 
 	
 	//Set Link and Submit Click Events
@@ -180,7 +230,7 @@ window.addEventListener("DOMContentLoaded", function() {
 	var clearLink = $('clear');
 	clearLink.addEventListener("click", clearLocal);
 	var save = $('submit');
-	save.addEventListener("click", storeData);
+	save.addEventListener("click", validate);
 
 
 
