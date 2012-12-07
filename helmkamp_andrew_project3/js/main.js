@@ -135,7 +135,7 @@ window.addEventListener("DOMContentLoaded", function() {
 		deleteLink.href = "#";
 		deleteLink.key = key;
 		var deleteText = "Delete Item";
-		//deleteLink.addEventListener("click", deleteItem);
+		deleteLink.addEventListener("click", deleteItem);
 		deleteLink.innerHTML = deleteText;
 		linkLi.appendChild(deleteLink);
 	}
@@ -167,6 +167,17 @@ window.addEventListener("DOMContentLoaded", function() {
 		//Save the key value in this function as a property of the editSubmit event
 		editSubmit.key = this.key;
 		editSubmit.addEventListener("click", validate);
+	}
+
+	function deleteItem () {
+		var ask = confirm("Are you sure you want to delete this item?");
+		if (ask) {
+			localStorage.removeItem(this.key);
+			window.location.reload();
+			alert("Item has been deleted.");
+		} else {
+			alert("The item has not been deleted.");
+		}
 	}
 
 	function clearLocal () {
