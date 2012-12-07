@@ -1,3 +1,4 @@
+/*global JSON*/
 /****************
 *Andrew Helmkamp
 *VFW 1212
@@ -8,8 +9,8 @@
 window.addEventListener("DOMContentLoaded", function() {
 
 	//"Global" Variables
-	var highlightedValue = "No";
-	var hideForm = false;
+	var highlightedValue = "No",
+	    hideForm = false;
 
 	//getElementById Function
 	function $ (x) {
@@ -25,8 +26,13 @@ window.addEventListener("DOMContentLoaded", function() {
 		};
 	}
 
-	function storeData() {
-		var id = Math.floor(Math.random()*1000000001);
+	function storeData(key) {
+		//if there is no key, make a new item. Else update current data
+		if (!key) {
+			var id = Math.floor(Math.random()*1000000001);
+		} else {
+			id = key;
+		}
 		//Gather data from form and store in an object
 		//Object properties contain array with the form label and value
 		getHighlightedValue();
@@ -41,6 +47,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
 		//Save data into local storage using Stringify
 		localStorage.setItem(id, JSON.stringify(item));
+		window.location.reload();
 		alert("Item Saved");
 	};
 
@@ -93,7 +100,6 @@ window.addEventListener("DOMContentLoaded", function() {
 					var optSubText = obj[n][0]+" "+obj[n][1];
 					makeSubLi.innerHTML = optSubText;
 					makeSubList.appendChild(linkLi);
-					//console.log(obj[n][1]);
 				};
 				
 				
@@ -122,10 +128,6 @@ window.addEventListener("DOMContentLoaded", function() {
 		editLink.addEventListener("click", editItem);
 		editLink.innerHTML = editText;
 		linkLi.appendChild(editLink);
-		
-		//Create line break
-		//var lineBreak = document.createElement('br');
-		//linkLi.appendChild(lineBreak);
 		
 		//add Delete Link
 		var deleteLink = document.createElement('a');
@@ -163,9 +165,8 @@ window.addEventListener("DOMContentLoaded", function() {
 		$('submit').value = "Edit Item";
 		var editSubmit = $('submit');
 		//Save the key value in this function as a property of the editSubmit event
-		editSubmit.addEventListener("click", validate);
 		editSubmit.key = this.key;
-		
+		editSubmit.addEventListener("click", validate);
 	}
 
 	function clearLocal () {
@@ -185,7 +186,14 @@ window.addEventListener("DOMContentLoaded", function() {
 		var getStartDate = $('start');
 		var getEndDate = $('end');
 		var getItemName = $('itemName');
-		
+		var errMsg = $('errors');
+
+		//Reset error messages
+		errMsg.innerHTML = "";
+		getStartDate.style.border = "1px solid black";
+		getEndDate.style.border = "1px solid black";
+		getItemName.style.border = "1px solid black";
+
 		//Check for errors
 		var aMessages = [];
 		
@@ -210,15 +218,19 @@ window.addEventListener("DOMContentLoaded", function() {
 		//If errors, display them
 		if(aMessages.length >= 1) {
 				var j = aMessages.length;
-				var errMsg = $('errors')
+				
 				for(var i=0; i < j; i++) {
 						var txt = document.createElement('li');
 						txt.innerHTML = aMessages[i];
 						errMsg.appendChild(txt);
 				}
+			e.preventDefault();
+			return false;
+		} else {
+			//this.key value was passed through the editSubmit event listner as a property
+			storeData(this.key);
 		}
-		e.preventDefault();
-		return false;
+		
 	}
 
 	
