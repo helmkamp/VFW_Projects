@@ -18,6 +18,12 @@ window.addEventListener("DOMContentLoaded", function() {
 		return theElement;
 	}
 
+	//Show the current value of the range input
+	function showValue() {
+		var sliderValue = $('priority').value; 
+		document.getElementById("priorityNum").innerHTML = sliderValue; 
+	}
+
 	function getHighlightedValue() {
 		if ($('highlight').checked) {
 			highlightedValue = $('highlight').value;
@@ -264,6 +270,9 @@ window.addEventListener("DOMContentLoaded", function() {
 	clearLink.addEventListener("click", clearLocal);
 	var save = $('submit');
 	save.addEventListener("click", validate);
+
+	var slider = $('priority');
+	slider.addEventListener("change", showValue)
 
 
 
