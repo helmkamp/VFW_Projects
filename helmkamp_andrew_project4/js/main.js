@@ -2,7 +2,7 @@
 /****************
 *Andrew Helmkamp
 *VFW 1212
-*Project 3
+*Project 4
 *Javascript file
 ****************/
 
