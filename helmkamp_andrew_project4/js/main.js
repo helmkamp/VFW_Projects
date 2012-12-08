@@ -106,7 +106,8 @@ window.addEventListener("DOMContentLoaded", function() {
 				makeItemLinks(localStorage.key(i), linkLi); //Create our edit and delete links for each item
 			};
 		} else{
-			alert("There is no data to display.");
+			alert("There is no data to display. Test data will be automatically loaded.");
+			autoFillData();
 		};
 	};
 
@@ -115,6 +116,15 @@ window.addEventListener("DOMContentLoaded", function() {
 		toggleForm();
 		window.location.reload();
 		return false;
+	}
+
+	//Add defualt data
+	function autoFillData () {
+		//The JSON data used for this is in the json.js file
+		for(var n in json) {
+			var id = Math.floor(Math.random()*1000000001);
+			localStorage.setItem(id, JSON.stringify(json[n]));
+		}
 	}
 	
 	// Make the edit/delete links for each displayed item
