@@ -59,6 +59,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
 	function toggleForm () {
 		if (hideForm) {
+		    $('head').style.display = "none";
 			$('todoForm').style.display = "none";
 			$('display').style.display = "none";
 			$('add').style.display = "inline";

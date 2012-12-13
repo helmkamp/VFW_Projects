@@ -1,15 +1,24 @@
+/*Style based off of jQuery Mobile theme A*/
+
 #wrap {
 	width: 21em;
 }
+
 body {
 	font-family: sans-serif;
 	font-size: 14px;
-	background-color: #ccc;
+	color: white;
+	background: -webkit-linear-gradient(top, #444, #222);
+	text-shadow: 0 /*{a-body-shadow-x}*/ 1px /*{a-body-shadow-y}*/ 1px /*{a-body-shadow-radius}*/ #111 /*{a-body-shadow-color}*/;
 }
 
 h1 {
+	border: 1px solid #333;
 	text-align: center;
-	background: -webkit-linear-gradient(top, #2F2727, #1a82f7, #2F2727);
+	background: -webkit-linear-gradient(top, #3c3c3c, #111);
+	color: white;
+	-webkit-box-shadow: 0px 0px 12px rgba(0,0,0,.6);
+	text-shadow: 0 1px 1px #999;
 }
 
 #clear {
@@ -29,7 +38,8 @@ h1 {
 }
 
 a, :visited {
-	color: blue;
+	color: #2489ce;
+	font-weight: bold;
 	outline: 0;
 	text-decoration: none;
 }
@@ -52,22 +62,29 @@ form {
 	width: 4.1em;
 }
 
+/*Intro text on index page*/
 p {
 	text-align: center;
 }
 
 
 #highlightGreen {
+	color: black;
+	text-shadow: 0 1px 1px #444;
 	background-color: green;
 	width: 21em;
 }
 
 #highlightYellow {
+	color: black;
+	text-shadow: 0 1px 1px #444;
 	background-color: yellow;
 	width: 21em;
 }
 
 #highlightRed {
+	color: black;
+	text-shadow: 0 1px 1px #444;
 	background-color: red;
 	width: 21em;
 }
