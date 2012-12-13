@@ -88,3 +88,9 @@ p {
 	background-color: red;
 	width: 21em;
 }
+
+#pic {
+	float: right;
+	padding-right: 3px;
+	padding-top: 3px;
+}

@@ -92,6 +92,7 @@ window.addEventListener("DOMContentLoaded", function() {
 				var obj = JSON.parse(value);
 				var makeSubList = document.createElement('ul');
 				makeLi.appendChild(makeSubList);
+				getImage(obj.category[1], makeSubList);
 				for(var n in obj){
 					var makeSubLi = document.createElement('li');
 					if((obj.highlighted[1] === "Yes")) {
@@ -118,6 +119,16 @@ window.addEventListener("DOMContentLoaded", function() {
 		};
 	};
 
+	function getImage(catName, makeSubList) {
+		var imageLi = document.createElement('li');
+		makeSubList.appendChild(imageLi);
+		var newImage = document.createElement('img');
+		var setSource = newImage.setAttribute("src", "img/"+ catName +"Icon.png");
+		newImage.setAttribute("id", "pic");
+		imageLi.appendChild(newImage);
+	}
+	
+	
 	function addItem () {
 		hideForm = false;
 		toggleForm();
