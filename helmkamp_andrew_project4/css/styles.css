@@ -1,5 +1,10 @@
 /*Style based off of jQuery Mobile theme A*/
 
+* {
+	/*Get rid of the highlight when you tap a link*/
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 #wrap {
 	width: 21em;
 }

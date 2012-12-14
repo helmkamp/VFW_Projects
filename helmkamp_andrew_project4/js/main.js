@@ -14,14 +14,12 @@ window.addEventListener("DOMContentLoaded", function() {
 
 	//getElementById Function
 	function $ (x) {
-		var theElement = document.getElementById(x);
-		return theElement;
+        return document.getElementById(x);
 	}
 
 	//Show the current value of the range input
 	function showValue() {
-		var sliderValue = $('priority').value; 
-		document.getElementById("priorityNum").innerHTML = sliderValue; 
+        document.getElementById("priorityNum").innerHTML = $('priority').value;
 	}
 
 	function getHighlightedValue() {
@@ -29,8 +27,8 @@ window.addEventListener("DOMContentLoaded", function() {
 			highlightedValue = $('highlight').value;
 		} else{
 			highlightedValue = "No";
-		};
-	}
+        }
+    }
 
 	function storeData(key) {
 		//if there is no key, make a new item. Else update current data
@@ -55,7 +53,7 @@ window.addEventListener("DOMContentLoaded", function() {
 		localStorage.setItem(id, JSON.stringify(item));
 		window.location.reload();
 		alert("Item Saved");
-	};
+	}
 
 	function toggleForm () {
 		if (hideForm) {
@@ -68,8 +66,8 @@ window.addEventListener("DOMContentLoaded", function() {
 			$('display').style.display = "inline";
 			$('add').style.display = "none";
 			$('items').style.display = "none";
-		};
-	};
+        }
+    }
 
 	function getData () {
 		if (localStorage.length >= 1) {
@@ -105,19 +103,18 @@ window.addEventListener("DOMContentLoaded", function() {
 						}
 					}
 					makeSubList.appendChild(makeSubLi);
-					var optSubText = obj[n][0]+" "+obj[n][1];
-					makeSubLi.innerHTML = optSubText;
+                    makeSubLi.innerHTML = obj[n][0] + " " + obj[n][1];
 					makeSubList.appendChild(linkLi);
-				};
+				}
 				
 				
 				makeItemLinks(localStorage.key(i), linkLi); //Create our edit and delete links for each item
-			};
+			}
 		} else{
 			alert("There is no data to display. Test data will be automatically loaded.");
 			autoFillData();
-		};
-	};
+		}
+	}
 
 	function getImage(catName, makeSubList) {
 		var imageLi = document.createElement('li');
@@ -136,7 +133,7 @@ window.addEventListener("DOMContentLoaded", function() {
 		return false;
 	}
 
-	//Add defualt data
+	//Add default data
 	function autoFillData () {
 		//The JSON data used for this is in the json.js file
 		for(var n in json) {
@@ -217,7 +214,7 @@ window.addEventListener("DOMContentLoaded", function() {
 			return false;
 		} else {
 			alert("There is no data to clear.");
-		};
+		}
 	}
 	
 	function validate(e) {
